@@ -31,7 +31,7 @@ def main():
     if not path:
         return
     path = os.path.join(path, addon.getSetting('extras-folder').decode('utf-8'))
-    xbmc.log(("[context.dvd.extras] opening '%s'" % path).encode('utf-8'), xbmc.LOGDEBUG)
+    xbmc.log(b"[%s] opening '%s'" % (addon.getAddonInfo('id'), path.encode('utf-8')), xbmc.LOGDEBUG)
     if xbmcvfs.exists((path + '/').encode('utf-8')):
         xbmc.executebuiltin('Container.Update(\"%s\")' % path)
     else:

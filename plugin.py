@@ -64,7 +64,27 @@ def path_browser():
         url = os.path.join(current_path, name)
         addDirectoryItem(plugin.handle, url, li, isFolder=False)
 
+    if 'isroot' in args:
+        addDirectoryItem(
+            plugin.handle,
+            plugin.url_for(youtube, q=args['title'][0] + ' Extras'),
+            ListItem("Search on Youtube"),
+            isFolder=True)
+
     endOfDirectory(plugin.handle)
+
+
+@plugin.route("/youtube")
+def youtube():
+    query = plugin.args['q'][0]
+    kb = xbmc.Keyboard(query, 'Search')
+    kb.doModal()
+    if kb.isConfirmed():
+        edited_query = kb.getText()
+        if edited_query:
+            url = b"plugin://plugin.video.youtube/search/?q=" + \
+                  quote_plus(edited_query)
+            xbmc.executebuiltin(b'Container.Update(\"%s\")' % url)
 
 
 if __name__ == '__main__':

@@ -2,6 +2,7 @@
 <addon id="context.item.extras" name="Extras" version="1.0.0" provider-name="takoi">
   <requires>
     <import addon="xbmc.python" version="2.20.0"/>
+    <import addon="script.module.routing" version="0.1.0"/>
   </requires>
   <extension point="kodi.context.item" library="addon.py">
     <item>
@@ -10,6 +11,9 @@
         StringCompare(ListItem.dbtype,season)
       </visible>
     </item>
+  </extension>
+  <extension point="xbmc.python.pluginsource" library="plugin.py">
+    <provides>video</provides>
   </extension>
   <extension point="kodi.addon.metadata">
     <platform>all</platform>

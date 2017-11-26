@@ -43,7 +43,7 @@ def main():
     if xbmcgui.getCurrentWindowId() == 10025:
         xbmc.executebuiltin('Container.Update(\"%s\")' % plugin_url)
     else:
-        xbmc.executebuiltin('ActivateWindow(Video, \"%s\", return)' % plugin_url)
+        xbmc.executebuiltin('ActivateWindow(videos, \"%s\", return)' % plugin_url)
 
 
 if __name__ == '__main__':

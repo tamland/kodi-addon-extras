@@ -29,14 +29,15 @@ plugin = routing.Plugin()
 
 
 @plugin.route("/")
-def root():
-    addon = xbmcaddon.Addon()
-    Dialog().ok(addon.getLocalizedString(30000), addon.getLocalizedString(30002))
-
-
-@plugin.route("/browse")
-def path_browser():
+def browse():
     args = plugin.args
+
+    if 'path' not in args:
+        # back navigation workaround: just silently fail and we'll
+        # eventually end outside the plugin dir
+        xbmcplugin.endOfDirectory(plugin.handle, succeeded=False)
+        return
+
     current_path = args['path'][0]
     if not current_path.endswith('/'):
         current_path += '/'
@@ -56,7 +57,7 @@ def path_browser():
             b'title': args['title'][0],
             b'fanart': args['fanart'][0],
         }
-        url = 'plugin://context.item.extras/browse?' + urlencode(params)
+        url = 'plugin://context.item.extras/?' + urlencode(params)
         xbmcplugin.addDirectoryItem(plugin.handle, url, li, isFolder=True)
 
     for name in files:

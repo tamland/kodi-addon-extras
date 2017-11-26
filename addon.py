@@ -38,12 +38,12 @@ def main():
         'title': sys.listitem.getLabel(),
         'fanart': sys.listitem.getProperty('fanart_image'),
     }
-    plugin_url = "plugin://context.item.extras/browse?" + urlencode(params)
+    plugin_url = "plugin://context.item.extras/?" + urlencode(params)
 
     if xbmcgui.getCurrentWindowId() == 10025:
         xbmc.executebuiltin('Container.Update(\"%s\")' % plugin_url)
     else:
-        xbmc.executebuiltin('ActivateWindow(videos, \"%s\", return)' % plugin_url)
+        xbmc.executebuiltin('ActivateWindow(videos, \"%s\")' % plugin_url)
 
 
 if __name__ == '__main__':

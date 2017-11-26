@@ -20,8 +20,8 @@ import xbmc
 import xbmcvfs
 import routing
 import xbmcaddon
+import xbmcplugin
 from xbmcgui import Dialog, ListItem
-from xbmcplugin import addDirectoryItem, endOfDirectory
 from urllib import urlencode, quote_plus
 
 
@@ -57,23 +57,23 @@ def path_browser():
             b'fanart': args['fanart'][0],
         }
         url = 'plugin://context.item.extras/browse?' + urlencode(params)
-        addDirectoryItem(plugin.handle, url, li, isFolder=True)
+        xbmcplugin.addDirectoryItem(plugin.handle, url, li, isFolder=True)
 
     for name in files:
         li = ListItem(name)
         if 'fanart' in args:
             li.setArt({'fanart': args['fanart'][0]})
         url = os.path.join(current_path, name)
-        addDirectoryItem(plugin.handle, url, li, isFolder=False)
+        xbmcplugin.addDirectoryItem(plugin.handle, url, li, isFolder=False)
 
     if 'isroot' in args:
-        addDirectoryItem(
-            plugin.handle,
-            plugin.url_for(youtube, q=args['title'][0] + ' Extras'),
-            ListItem("Search on Youtube"),
-            isFolder=True)
+        li = ListItem("Search on Youtube")
+        li.setProperty("specialsort", "bottom")
+        url = plugin.url_for(youtube, q=args['title'][0] + ' Extras')
+        xbmcplugin.addDirectoryItem(plugin.handle, url, li, isFolder=True)
 
-    endOfDirectory(plugin.handle)
+    xbmcplugin.addSortMethod(plugin.handle, xbmcplugin.SORT_METHOD_LABEL)
+    xbmcplugin.endOfDirectory(plugin.handle)
 
 
 @plugin.route("/youtube")

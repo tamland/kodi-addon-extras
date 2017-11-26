@@ -8,9 +8,9 @@
     <menu id="kodi.core.main">
       <item library="addon.py">
         <label>30000</label>
-        <visible>StringCompare(ListItem.dbtype,movie)
-            | StringCompare(ListItem.dbtype,tvshow)
-            | StringCompare(ListItem.dbtype,season)
+        <visible>String.IsEqual(ListItem.dbtype,movie)
+            | String.IsEqual(ListItem.dbtype,tvshow)
+            | String.IsEqual(ListItem.dbtype,season)
         </visible>
       </item>
     </menu>

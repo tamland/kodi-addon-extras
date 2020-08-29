@@ -1,6 +1,6 @@
 # XBMC Media Center language file
 # Addon Name: Extras
-# Addon id: context.dvd.extras
+# Addon id: context.item.extras
 msgid ""
 msgstr ""
 

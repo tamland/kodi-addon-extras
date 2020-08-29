@@ -1,4 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<settings>
-    <setting label="30001" id="extras-folder" type="text" default="Extras"/>
+<?xml version="1.0" ?>
+<settings version="1">
+	<section id="context.item.extras">
+		<category id="default" label="571" help="">
+			<group id="1">
+				<setting id="extras-folder" type="string" label="30001" help="">
+					<level>0</level>
+					<default>Extras</default>
+					<control type="edit" format="string">
+						<heading>30001</heading>
+					</control>
+				</setting>
+			</group>
+		</category>
+	</section>
 </settings>

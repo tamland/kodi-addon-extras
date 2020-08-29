@@ -17,10 +17,11 @@
 
 import os
 import sys
-import xbmc
-import xbmcgui
-import xbmcaddon
-from urllib import urlencode
+from kodi_six import xbmc, xbmcgui, xbmcaddon
+try:
+    from urllib import urlencode
+except ImportError:
+    from urllib.parse import urlencode
 
 
 def main():
